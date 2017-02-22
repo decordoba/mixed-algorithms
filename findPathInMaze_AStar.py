@@ -75,6 +75,7 @@ def getNeighbors(state, world):
                 neighbors.append((state[0], state1))
     return neighbors
 
+
 class World:
     """
     Class to save variables and handle the maze
@@ -91,6 +92,7 @@ class World:
 
     def setCoord(self, i, j, ch):
         self.maze[i] = self.maze[i][:j] + ch + self.maze[i][j + 1:]
+
 
 if __name__ == "__main__":
     if __name__ == "__main__":

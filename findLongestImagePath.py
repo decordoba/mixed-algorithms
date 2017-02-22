@@ -66,7 +66,6 @@ def findLongestImagePath(listing):
 
     return max_length
 
-
 def countSpaces(str):
     # Count spaces from beginning of str to first non-space char
     counter = 0
@@ -75,7 +74,6 @@ def countSpaces(str):
             return counter
         counter += 1
     return len(str)
-
 
 def findLongestImagePath2(listing):
     """

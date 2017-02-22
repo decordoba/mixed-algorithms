@@ -17,7 +17,6 @@ convertNumber(631) --> 62
 convertNumber(998577) --> 99867
 """
 
-
 def replaceTwoDigitsByMean(X):
     # Convert X to string
     strX = str(X)
@@ -36,10 +35,10 @@ def replaceTwoDigitsByMean(X):
     # Therefore, replacing the last pair by the mean will give us the max number
     return int(strX[:-2] + calculateCeilMean(int(strX[-2]), int(strX[-1])))
 
-
 def calculateCeilMean(a, b):
     # Take mean of a and b and apply a ceil. Example: a=3, b=6 --> (3+6)/2=4.5 becomes 5
     return int(math.ceil((a + b) / 2.0))
+
 
 if __name__ == "__main__":
     args = readInputArguments(input="")

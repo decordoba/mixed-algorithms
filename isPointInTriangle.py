@@ -64,7 +64,7 @@ def getDistance(p0x, p0y, p1x, p1y):
     """
     return math.sqrt((p0x - p1x)**2 + (p0y - p1y)**2)
 
-def isTriangle(ax, ay, bx, by, cx,cy):
+def isTriangle(ax, ay, bx, by, cx, cy):
     """
     Checks if triangle ABC is a triangle or not. Therefore, (A+B>C, C+A>B, B+C>A).
     For example, a=(0,0), b=(0,2), c=(0,4) is not a triangle
@@ -73,6 +73,7 @@ def isTriangle(ax, ay, bx, by, cx,cy):
     bc = getDistance(bx, by, cx, cy)
     ca = getDistance(cx, cy, ax, ay)
     return ab + bc > ca and ab + ca > bc and ca + bc > ab
+
 
 if __name__ == "__main__":
     (ax, ay) = (0, 2)

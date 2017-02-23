@@ -95,8 +95,7 @@ class World:
 
 
 if __name__ == "__main__":
-    if __name__ == "__main__":
-        default = """35 35
+    default = """35 35
 35 1
 37 37
 #####################################
@@ -136,30 +135,30 @@ if __name__ == "__main__":
 # # # # ### ### ####### ### ### ### #
 #B# # #       #   #       #   # #  A#
 #####################################"""
-        # Get maze data
-        input = readFileArgument(input=default).split("\n")
-        start_pos = tuple([int(i) for i in input[0].split()])
-        end_pos = tuple([int(i) for i in input[1].split()])
-        size = tuple([int(i) for i in input[2].split()])
-        maze = input[3:]
-        # Print initial maze
-        print "INPUT MAZE"
-        for line in maze:
-            print line
-        printSeparator()
-        # Create world
-        world = World(maze)
-        # Find path using A star (A*)
-        (path, length) = AStar(world, start_pos, end_pos, heuristic_function=getHeuristic)
-        # Print results
-        print "Shortest path length: {}".format(length)
-        print "Shortest path: {}".format(path)
-        printSeparator()
-        # Create map with path
-        for coord in path:
-            if coord != start_pos and coord != end_pos:
-                world.setCoord(coord[0], coord[1], "@")
-        # Print maze with path
-        print "OUTPUT MAZE"
-        for line in world.maze:
-            print line
+    # Get maze data
+    input = readFileArgument(input=default).split("\n")
+    start_pos = tuple([int(i) for i in input[0].split()])
+    end_pos = tuple([int(i) for i in input[1].split()])
+    size = tuple([int(i) for i in input[2].split()])
+    maze = input[3:]
+    # Print initial maze
+    print "INPUT MAZE"
+    for line in maze:
+        print line
+    printSeparator()
+    # Create world
+    world = World(maze)
+    # Find path using A star (A*)
+    (path, length) = AStar(world, start_pos, end_pos, heuristic_function=getHeuristic)
+    # Print results
+    print "Shortest path length: {}".format(length)
+    print "Shortest path: {}".format(path)
+    printSeparator()
+    # Create map with path
+    for coord in path:
+        if coord != start_pos and coord != end_pos:
+            world.setCoord(coord[0], coord[1], "@")
+    # Print maze with path
+    print "OUTPUT MAZE"
+    for line in world.maze:
+        print line

@@ -1,4 +1,4 @@
-#!/usr/bin/env
+#!/usr/bin/env python2
 
 import math
 from basic import *  # Find basic.py in https://github.com/decordoba/basic-python

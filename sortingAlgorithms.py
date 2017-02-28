@@ -14,8 +14,8 @@ def bubbleSort(a):
         for j in range(n - i - 1):
             if a[j] > a[j + 1]:
                 tmp = a[j]
-                a[j] = a [j + 1]
-                a [j + 1] = tmp
+                a[j] = a[j + 1]
+                a[j + 1] = tmp
                 newSwaps += 1
         if newSwaps == 0:
             break
@@ -30,29 +30,29 @@ def mergeSort(a):
     return swaps
 
 def mergeRecursive(a):
-    l = len(a)
-    if l <= 1:
+    len_a = len(a)
+    if len_a <= 1:
         return (a, 0)
-    lena = l//2
-    lenb = l - lena
-    b, sw1 = mergeRecursive(a[:lena])
-    c, sw2 = mergeRecursive(a[lena:])
+    len_b = len_a//2
+    len_c = len_a - len_b
+    b, sw1 = mergeRecursive(a[:len_b])
+    c, sw2 = mergeRecursive(a[len_b:])
     sw3 = 0
     i = 0
     j = 0
     buff = []
-    while i < lena and j < lenb:
+    while i < len_b and j < len_c:
         if b[i] > c[j]:
             buff.append(c[j])
             j += 1
-            sw3 += lena - i
+            sw3 += len_b - i
         else:
             buff.append(b[i])
             i += 1
-    while i < lena:
+    while i < len_b:
         buff.append(b[i])
         i += 1
-    while j < lenb:
+    while j < len_c:
         buff.append(c[j])
         j += 1
     return buff, sw1 + sw2 + sw3
@@ -76,7 +76,6 @@ if __name__ == "__main__":
     print "Merge sort:  {} -> Sorted in {} iterations".format(a2, it2)
 
 
-
 ####################################################################################################
 ## After this line, less optimal algorithms (that I didn't have the heart to delete) can be found ##
 ####################################################################################################
@@ -90,7 +89,7 @@ def mergeRecursive2(a, i, j, k):
         return 0
     half1 = (j - i) / 2.0
     half2 = (k - j) / 2.0
-    numSwaps  = mergeRecursive2(a, i, int(i + half1), int(i + 2 * half1))
+    numSwaps = mergeRecursive2(a, i, int(i + half1), int(i + 2 * half1))
     numSwaps += mergeRecursive2(a, j, int(j + half2), int(j + 2 * half2))
     k1 = j
     k2 = k

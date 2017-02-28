@@ -27,9 +27,9 @@ ADJACENT_MATRIX = [(-1, -1), (-1, 0), (-1, 1),
                    (1,  -1), (1,  0), (1,  1)]
 
 # Matrix that only considers the cells adjacent horizontally or vertically
-#ADJACENT_MATRIX =           [(-1, 0),
-#                   (0,  -1),          (0,  1),
-#                             (1,  0)]
+# ADJACENT_MATRIX =           [(-1, 0),
+#                    (0,  -1),          (0,  1),
+#                              (1,  0)]
 
 def countRegions(grid):
     w = len(grid)     # Width table

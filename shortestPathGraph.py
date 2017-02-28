@@ -35,7 +35,7 @@ class Graph:
         distances[root] = 0
         # Create queue
         q = Queue.Queue()
-        q.put(root)        
+        q.put(root)
         # Run BFS while there are nodes in the queue
         # This will explore all the graph once and get all distances from root
         while not q.empty():
@@ -167,7 +167,7 @@ if __name__ == "__main__":
         for i in xrange(m):
             x, y = [int(x) for x in lines[idx].split()]
             idx += 1
-            graph.addConnection(x-1,y-1)
+            graph.addConnection(x - 1, y - 1)
             world.addConnection(x - 1, y - 1)
         s = int(lines[idx])
         idx += 1

@@ -1,6 +1,5 @@
 #!/usr/bin/env python2
 
-import math
 from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 """
@@ -16,6 +15,7 @@ n:5, factors:99681,99979, palindrome:9966006699, result:677
 n:6, factors:999001,999999, palindrome:999000000999, result:1218
 n:7, factors:9997647,9998017, palindrome:99956644665999, result:877
 n:8, factors:99990001,99999999, palindrome:9999000000009999, result:475
+n:9, factors:999920317,999980347, palindrome:999900665566009999, result:1226  # Takes forever!!
 """
 
 
@@ -24,6 +24,7 @@ def generatePalindromes(num_digits, order="asc"):
     Generate all palindromes with num_digits, in ascending or descending order
     Example: generatePalindromes(3, order="asc")  --> [101, 111, ..., 989, 999]
              generatePalindromes(4, order="desc") --> [9999, 9889, ..., 1001]
+    We don't use it in the algorithm, but it may be useful for other problems
     """
 
     # Return empty list if num_digits is smaller than 1
@@ -105,7 +106,10 @@ def isDivisibleByTwoNDigitNumbers(num, n):
     divmin = 10 ** (n - 1)
     divmax = 10 ** n - 1
     # Cheat to speed up the function, due to the fact that all even n's will have as
-    # their largest palindrome int("9"*n) times another number.
+    # their largest palindrome int("9"*n) times another number. It is unfair because it is
+    # technically possible that we are missing some higher palindrome that we will not test
+    # (for example, 97*97 > 91*99, but we will not check if 97*97 is a palindrome, so if it
+    # was we would skip it. Anyway, for n < 10, this works fine)
     if n % 2 == 0:
         bigdiv = divmax
         smalldiv = min(divmax, int(num / bigdiv) + 1)

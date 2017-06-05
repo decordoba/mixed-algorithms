@@ -110,6 +110,22 @@ def sortAroundPivot(a, i, j):
             numSwaps += 1
     return i, numSwaps
 
+def quickSortNotInPlace(a):
+    if len(a) <= 1:
+        return a
+    pivot = a[len(a) // 2]
+    left = []
+    right = []
+    center = []
+    for i in a:
+        if i < pivot:
+            left.append(i)
+        elif i > pivot:
+            right.append(i)
+        else:
+            center.append(i)
+    return quicksort(left) + center + quicksort(right)
+
 def heapSort(a):
     heapq.heapify(a)
     a[:] = [heapq.heappop(a) for i in xrange(len(a))]
@@ -210,3 +226,11 @@ if __name__ == "__main__":
     it7 = heapSort(a7)
     time = getTime() - time
     print "Heap sort:      {} -> Sorted in {} iterations ({:3}s)".format(a7, it7, time)
+
+    # Quick sort not in place
+    a8 = list(a)
+    time = getTime()
+    quickSortNotInPlace(a8)
+    it8 = "??"
+    time = getTime() - time
+    print "Quick sort 2:   {} -> Sorted in {} iterations ({:3}s)".format(a8, it8, time)

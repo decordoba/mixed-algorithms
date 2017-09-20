@@ -80,6 +80,23 @@ def is_binary_search_tree_iterative(root_node, verbose=False):
             new_min_val = node.val if min_val is None else max(node.val, min_val)
             queue.append((node.r, max_val, new_min_val))
     return True
+
+# Wrong solution (and my 1st approach). All children from left node also need to be smaller than current node,
+# and all children from right node also need to be greater than current node.
+def is_binary_search_tree_wrong_approach(root_node):
+    queue = [root_node]
+    while len(queue) > 0:
+        node = queue.pop(0)  # removes first element queue
+        if node.l is not None:  # left has to be smaller than val
+            if node.l.val >= node.val:
+                return False
+            queue.append(node.l)
+        if node.r is not None:  # right has to be grater than val
+            if node.r.val <= node.val:
+                return False
+            queue.append(node.l)
+    return True
+
     
 if __name__ == "__main__":
     # Create BST tree
@@ -109,14 +126,17 @@ if __name__ == "__main__":
     root.r =node3
 
     verbose = False
-    print("Recursive solution: The tree is a BST? {}\n".format(is_binary_search_tree_recursive(root, verbose=verbose)))
-    print("Iterative solution: The tree is a BST? {}\n".format(is_binary_search_tree_iterative(root, verbose=verbose)))
-
+    print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
+    print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
+    print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))
+    print()
+    
     # Make tree not BST
     root.l.r.r.val = 9
     
-    print("Recursive solution: The tree is a BST? {}\n".format(is_binary_search_tree_recursive(root, verbose=verbose)))
-    print("Iterative solution: The tree is a BST? {}\n".format(is_binary_search_tree_iterative(root, verbose=verbose)))
+    print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
+    print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
+    print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))
 
 # Solutions without verbose (easier to read)
 """

@@ -50,8 +50,8 @@ def lengthOfLongestSubstring2(s):
 
 if __name__ == "__main__":
     default = "asdflkjendsfafinddjhrbans"
-    input = readInputArguments(input=default)
-    
-    
-    print "Solving with Algorithm 1: {}".format(lengthOfLongestSubstring1(input))
-    print "Solving with Algorithm 2: {}".format(lengthOfLongestSubstring2(input))
+    inp = readInputArguments(input=default)
+
+
+    print "Solving with Algorithm 1: {}".format(lengthOfLongestSubstring1(inp))
+    print "Solving with Algorithm 2: {}".format(lengthOfLongestSubstring2(inp))

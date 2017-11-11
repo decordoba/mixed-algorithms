@@ -1,12 +1,14 @@
 #!/usr/bin/env python2
 
+"""
+I found this challenge in HackerRank, and I thought it would be interesting to save my A star
+implementation. In this example, the algorithm finds the shortest path between two points in a
+maze.
+"""
+
 from heapq import *
 from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
-"""
-I found this challenge in HackerRank, and I thought it would be interesting to save my A star implementation.
-In this example, the algorithm finds the shortest path between two points in a maze.
-"""
 
 def AStar(world, state0, goal, cost0=0, heuristic_function=None):
     """
@@ -48,17 +50,21 @@ def AStar(world, state0, goal, cost0=0, heuristic_function=None):
     # Return empty path and cost=-1 if no path was found
     return ([], -1)
 
+
 def getCost(prev_state, new_state, world):
     # Return cost of going from prev_state to new_state
     return getManhattanDistance(prev_state, new_state)
+
 
 def getHeuristic(state, goal, world):
     # Return lower bound of actual distance to goal
     return getManhattanDistance(state, goal)
 
+
 def getManhattanDistance(state0, state1):
     # Return minimum possible distance between two states
     return abs(state0[0] - state1[0]) + abs(state0[1] - state1[1])
+
 
 def getNeighbors(state, world):
     # Return all neighbors (states next to our state) that are valid in world
@@ -136,29 +142,29 @@ if __name__ == "__main__":
 #B# # #       #   #       #   # #  A#
 #####################################"""
     # Get maze data
-    input = readFileArgument(input=default).split("\n")
-    start_pos = tuple([int(i) for i in input[0].split()])
-    end_pos = tuple([int(i) for i in input[1].split()])
-    size = tuple([int(i) for i in input[2].split()])
-    maze = input[3:]
+    inp = readFileArgument(input=default).split("\n")
+    start_pos = tuple([int(i) for i in inp[0].split()])
+    end_pos = tuple([int(i) for i in inp[1].split()])
+    size = tuple([int(i) for i in inp[2].split()])
+    maze = inp[3:]
     # Print initial maze
-    print "INPUT MAZE"
+    print("INPUT MAZE")
     for line in maze:
-        print line
+        print(line)
     printSeparator()
     # Create world
     world = World(maze)
     # Find path using A star (A*)
     (path, length) = AStar(world, start_pos, end_pos, heuristic_function=getHeuristic)
     # Print results
-    print "Shortest path length: {}".format(length)
-    print "Shortest path: {}".format(path)
+    print("Shortest path length: {}".format(length))
+    print("Shortest path: {}".format(path))
     printSeparator()
     # Create map with path
     for coord in path:
         if coord != start_pos and coord != end_pos:
             world.setCoord(coord[0], coord[1], "@")
     # Print maze with path
-    print "OUTPUT MAZE"
+    print("OUTPUT MAZE")
     for line in world.maze:
-        print line
+        print(line)

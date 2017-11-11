@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Medium Challenge 2 from Microsoft Competition at WashU (15 min)
 
@@ -38,8 +41,12 @@ Example output
 5
 """
 
+
 if __name__ == "__main__":
-    inp = """((FB, S), (C, F), (FB, S), (FB, F), (C, S), (FB, F), (C, F), (FB, S), (C, F), (C, S), (FB, F), (C, S), (FB, S), (C, F), (FB, S))"""
+    inp = "((FB, S), (C, F), (FB, S), (FB, F), (C, S), (FB, F), (C, F), (FB, S), (C, F), (C, S), (FB, F), (C, S), (FB, S), (C, F), (FB, S))"
+    print("INPUT:")
+    print(inp)
+    print("\nOUTPUT:")
 
     strikes = 0
     runs = 0

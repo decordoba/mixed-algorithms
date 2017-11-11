@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Easier Challenge 1 from Microsoft Competition at WashU (10 min)
 
@@ -39,12 +42,15 @@ Example output
 3
 """
 
+
 if __name__ == "__main__":
     inp = """3
 31,65
 7,3
 7,7"""
-
+    print("INPUT:")
+    [print(line) for line in inp.split("\n")]
+    print("\nOUTPUT:")
     lines = inp.split("\n")
     cases = int(lines[0])
     for i in range(cases):

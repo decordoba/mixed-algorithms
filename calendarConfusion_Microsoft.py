@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Easier Challenge 3 from Microsoft Competition at WashU (9 min)
 
@@ -31,15 +34,20 @@ Example output
 if __name__ == "__main__":
     inp = """2017-09-04 yyyy-mm-dd mm*yyyy*dd"""
 
+    print("INPUT:")
+    for line in inp.split("\n"):
+        print(line)
+
+    print("\nOUTPUT:")
     for line in inp.split("\n"):
         original, original_format, new_format = line.split()
         y_idx = original_format.index("yyyy")
         m_idx = original_format.index("mm")
         d_idx = original_format.index("dd")
 
-        year = original[y_idx : y_idx + 4]
-        month = original[m_idx : m_idx + 2]
-        day = original[d_idx : d_idx + 2]
+        year = original[y_idx: y_idx + 4]
+        month = original[m_idx: m_idx + 2]
+        day = original[d_idx: d_idx + 2]
 
         y_idx = new_format.index("yyyy")
         m_idx = new_format.index("mm")

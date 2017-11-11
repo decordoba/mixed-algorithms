@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 Algorithm that calculates all i18n combinations of a word
@@ -6,7 +7,8 @@ Internationalization = I18N = I123456789012345678N
 
 Example with input GOOGLE:
 GOOGLE
-GOOGLE, GOOG1E, GOO1LE, GOO2E, GO1GLE, GO1G1E, GO2LE, GO3E, G1OGLE, G1OG1E, G1O1LE, G1O2E, G2GLE, G2G1E, G3LE, G4E
+GOOGLE, GOOG1E, GOO1LE, GOO2E, GO1GLE, GO1G1E, GO2LE, GO3E, G1OGLE, G1OG1E, G1O1LE, G1O2E, G2GLE,
+G2G1E, G3LE, G4E.
 
 This is a Dynamic Programming example, here is what it does:
 GOOGLE: Let's use the algorithm with prefix G and word OOGLE
@@ -14,7 +16,8 @@ GOOGLE: Let's use the algorithm with prefix G and word OOGLE
 Recursive fn returns all possible combinations
 G, OOGLE
 do same but selecting all possible values of first char:
-Input: "OGLE", "O" -> Len(4) => Recursive => Return [OOGLE, OOG1E, OO1LE, OO2E, O1GLE, O1G1E, O2LE, O3E]
+Input: "OGLE", "O" -> Len(4) => Recursive => Return [OOGLE, OOG1E, OO1LE, OO2E, O1GLE, O1G1E,
+                                                     O2LE, O3E]
 Input: "GLE", "1O" -> Len(3) => Recursive => Return [1OGLE, 1OG1E, 1O1LE, 1O2E]
 Input: "LE", "2G"  -> Len(2) => Recursive => Return [2GLE, 2G1E]
 Input: "E", "3L"   -> Len(1) => Return 3LE
@@ -48,11 +51,13 @@ Input: "", "1E"  -> Len(0) => Return 1E
 
 import sys
 
-    
+
 words_table = {}
+
 
 def return_all_i18n(s):
     return recursive_find(s, prefix_can_be_number=False)
+
 
 def recursive_find(s, prefix_can_be_number=True):
     n = len(s)
@@ -64,7 +69,7 @@ def recursive_find(s, prefix_can_be_number=True):
             if not prefix_can_be_number:
                 break
         prefix += s[i]
-        
+
         sub_s = s[i+1:]
         if len(sub_s) < 2:
             sufixes = [sub_s]
@@ -76,7 +81,8 @@ def recursive_find(s, prefix_can_be_number=True):
         for sufix in sufixes:
             result.append(prefix + sufix)
     return result
-    
+
+
 if __name__ == "__main__":
     s = "HelloWorld"
     if len(sys.argv) > 1:

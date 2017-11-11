@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 
-import math
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 I had to face this challenge in one of my interviews.
 We get a string of numbers (0 to 9) and a number of characters to remove, and we have to remove
@@ -14,6 +11,10 @@ removeNumbersFromString("304756756843942", 6) --> "045543942"
 removeNumbersFromString("9876563322", 30) --> ""
 removeNumbersFromString("012345", 0) --> "012345"
 """
+
+import sys
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 
 def getMinimumNumberFromString(numbers_string, remove):
     # Solve obvious cases: remove too big or too small
@@ -45,6 +46,6 @@ if __name__ == "__main__":
     args = readInputArguments(input="")
     if len(args) > 0:
         numbers_string, remove = parseString(args)[0]
-        print getMinimumNumberFromString(numbers_string, int(remove))
+        print(getMinimumNumberFromString(numbers_string, int(remove)))
     else:
-        print "Usage: python {} NUMERIC_STRING CHARS_TO_REMOVE".format(sys.argv[0])
+        print("Usage: python {} NUMERIC_STRING CHARS_TO_REMOVE".format(sys.argv[0]))

@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 
-import Queue
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 I had to face a similar challenge in an interview, and then I found it again in HackerRank.
 Given an nxm matrix, with zeros and ones, count the number of ones in the largest
@@ -21,6 +18,9 @@ Y Y 0 0
 X 0 0 Y
 """
 
+import Queue
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 # Matrix that considers the diagonal cells adjacent
 ADJACENT_MATRIX = [(-1, -1), (-1, 0), (-1, 1),
                    (0,  -1),          (0,  1),
@@ -30,6 +30,7 @@ ADJACENT_MATRIX = [(-1, -1), (-1, 0), (-1, 1),
 # ADJACENT_MATRIX =           [(-1, 0),
 #                    (0,  -1),          (0,  1),
 #                              (1,  0)]
+
 
 def countRegions(grid):
     w = len(grid)     # Width table
@@ -64,12 +65,11 @@ def countRegions(grid):
 
 
 if __name__ == "__main__":
-    default = \
-"""1 1 0 0
+    default = """1 1 0 0
 0 1 1 0
 0 0 1 0
 1 0 0 1"""
     input = readFileArgument(input=default, print_input=True)
     grid = parseString(input, type="int")
     max_region, num_regions = countRegions(grid)
-    print "Number of regions: {}\nLargest region:    {}".format(num_regions, max_region)
+    print("Number of regions: {}\nLargest region:    {}".format(num_regions, max_region))

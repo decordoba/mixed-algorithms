@@ -4,7 +4,7 @@
 Interesting code similar to countPathsStaircase.py.
 https://www.hackerrank.com/challenges/coin-change
 
-The goal is to find the number of ways of making change for N units(our money goal)
+The goal is to find the number of ways of returning change for N units (our money goal)
 using a list of coins given (we assume we have infinite coins of each type available).
 
 Example: Goal: 6, Coins: [1, 2, 3] => Result: 7
@@ -26,8 +26,9 @@ def calculate_change_combinations_smart(goal, coins):
             prev_pos = i - coin
             if prev_pos >= 0:
                 combinations[i] += combinations[prev_pos]
-    
+
     return combinations[-1]
+
 
 def calculate_change_combinations(goal, coins):
     """
@@ -54,19 +55,19 @@ def calculate_change_combinations(goal, coins):
                 for k in range(j, len(coins)):
                     coin_k = coins[k]
                     ht[coin_j][i] += ht[coin_k][prev_pos]
-    
+
     num_combinations = 0
     for coin_value in coins:
         num_combinations += ht[coin_value][-1]
 
     return num_combinations
 
+
 if __name__ == "__main__":
     # Get input from arguments passed, if any, and parse it
     # Format: goal money \n list of coin values to reach such value
-    default = \
-    """100
-    1 2 5 10 50 100"""
+    default = """100
+1 2 5 10 50 100"""
     input = readInputArguments(input=default)
     parsed_input = parseString(input, type="int")
     if len(parsed_input) == 1:
@@ -75,13 +76,13 @@ if __name__ == "__main__":
     else:
         money_goal, coins = parsed_input
         money_goal = money_goal[0]
-    
+
     # Run algorithm and measure performance
     t1, num_comb1 = timeFunction(calculate_change_combinations, money_goal, coins)
     t2, num_comb2 = timeFunction(calculate_change_combinations_smart, money_goal, coins)
-    
-    print "Money goal: {} units\nAvailable coins: {}".format(money_goal, coins)
-    print "Number of coin combinations to reach the goal: {}\n".format(num_comb1)
-    print "Time taken with marginally slower algorithm: {} seconds".format(t1)
-    print "Time taken with marginally faster algorithm: {} seconds".format(t2)
-    print "Both solution give the same result? {}".format("YES" if num_comb1 == num_comb2 else "NO")
+
+    print("Money goal: {} units\nAvailable coins: {}".format(money_goal, coins))
+    print("Number of coin combinations to reach the goal: {}\n".format(num_comb1))
+    print("Time taken with marginally slower algorithm: {} seconds".format(t1))
+    print("Time taken with marginally faster algorithm: {} seconds".format(t2))
+    print("Both solution give the same result? {}".format("YES" if num_comb1 == num_comb2 else "NO"))

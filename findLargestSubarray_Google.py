@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 Easy challenge for an internship at Google. Took me 10 min to write the first part.
@@ -26,12 +27,13 @@ of the subarray, not about any other. Therefore, I solved the algorithm in 2 way
 ignoring this constraint (solution) and in the other following it (solution2).
 """
 
+
 def solution2(A, K):
     # If A has only distinct elements, the problem is trivial,
     # we just have to find the largest number that appears in
     # position <= len(A) - K, and return the array with such
     # element and the next K - 1 numbers in the list
-    
+
     # Find and return subarray with largest first number
     maxNum = 0
     maxIdx = -1
@@ -39,8 +41,9 @@ def solution2(A, K):
         if maxNum < A[i]:
             maxNum = A[i]
             maxIdx = i
-    
+
     return A[maxIdx:maxIdx + K]
+
 
 def compare_As(A1, A2):
     # Return True if A >= B and False if B < A
@@ -51,20 +54,20 @@ def compare_As(A1, A2):
             return True
     return False
 
+
 def solution(A, K):
     # In this solution, I AM ASSUMING THERE MAY BE NOT DISTINCT ELEMENTS IN A
-    # unlike the problem suggests. To see the solution assuming that ther may
+    # unlike the problem suggests. To see the solution assuming that there may
     # not be distinct elements in A, see solution2.
-    
+
     # Make list of potential largest contiguous subarrays
     maxNum = 0
-    maxIdx = -1
     listA = []
     for i in range(len(A) - K + 1):
         if maxNum <= A[i]:
             maxNum = A[i]
             listA.append(A[i:i + K])
-    
+
     # Iterate through all arrays to find largest contiguous subarray
     maxA = None
     for a in listA:
@@ -72,13 +75,14 @@ def solution(A, K):
             continue
         if maxA is None or compare_As(maxA, a):
             maxA = a
-    
+
     return maxA
 
+
 def test(case, num):
-    print ">>", case
-    print "  ", solution(case, num)
-    print
+    print(">>", case)
+    print("  ", solution(case, num))
+    print("")
 
 
 if __name__ == "__main__":

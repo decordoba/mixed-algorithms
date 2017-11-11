@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 
-import math
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 I had to face this challenge in one of my interviews.
 We are given a listing of directories and files in a file system. Each directory has a name,
@@ -29,6 +26,9 @@ From here, we have to return the length of the longest absolute path of an image
 is: "/dir1/dir12/who said folders couldn't include spaces/dir1211/xxx.png", so we would return
 len("/dir1/dir12/who said folders couldn't include spaces/dir1211") = 60.
 """
+
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 
 def findLongestImagePath(listing):
     nesting = -1
@@ -66,14 +66,16 @@ def findLongestImagePath(listing):
 
     return max_length
 
-def countSpaces(str):
+
+def countSpaces(s):
     # Count spaces from beginning of str to first non-space char
     counter = 0
-    for c in str:
+    for c in s:
         if c != " ":
             return counter
         counter += 1
-    return len(str)
+    return len(s)
+
 
 def findLongestImagePath2(listing):
     """
@@ -109,7 +111,7 @@ def findLongestImagePath2(listing):
 
 if __name__ == "__main__":
     # Sample input
-    input = """
+    inp = """
 dir1
  dir11
  dir12
@@ -126,8 +128,8 @@ dir2
 file1.png
 """
     # Read file or use sample input
-    listing = readFileArgument(input=input)
+    listing = readFileArgument(input=inp)
     # Test method 1
-    print findLongestImagePath(listing)
+    print(findLongestImagePath(listing))
     # Test method 2
-    print findLongestImagePath2(listing)
+    print(findLongestImagePath2(listing))

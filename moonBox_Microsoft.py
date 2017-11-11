@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Medium Challenge 1 from Microsoft Competition at WashU (10 min)
 
@@ -37,12 +40,17 @@ Alpha Bravo Charlie
 4
 """
 
+
 if __name__ == "__main__":
     inp = """Alpha Bravo Charlie
 Alpha Bravo Charlie
 Alpha Bravo Charlie
 Alppa Bravo Charlie
 Alpha Bravo Charlie"""
+    print("INPUT:")
+    for line in inp.split("\n"):
+        print(line)
+    print("\nOUTPUT:")
 
     messages = inp.split("\n")
 
@@ -61,5 +69,5 @@ Alpha Bravo Charlie"""
             num_times_msg_received = ht[msg]
             most_received_msg = msg
 
-    print(msg)
+    print(most_received_msg)
     print(num_times_msg_received)

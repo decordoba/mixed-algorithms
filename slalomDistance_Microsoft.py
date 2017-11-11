@@ -1,22 +1,28 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
-Harder Challenge 2 from Microsoft Competition at WashU (several days, I made an algorithm that solved many cases in 1:30h,
-but it took me a while to figure out the best solution that works always)
+Harder Challenge 2 from Microsoft Competition at WashU (several days, I made an algorithm that
+solved many cases in 1:30h, but it took me a while to figure out the best solution that always
+works)
 
 Slalom Distance | 3 point(s)
 
-You've decided to start slalom skiing. In slalom skiing, you start at some location and must ski through a series of gates.
-Each gate is defined by two flags that you must ski through. For simplicity, the gates will all be vertically aligned to the
-y-axis, meaning that both points defining each gate will share the same x-coordinate. You want to be the best, so you are
+You've decided to start slalom skiing. In slalom skiing, you start at some location and must ski
+through a series of gates. Each gate is defined by two flags that you must ski through. For
+simplicity, the gates will all be vertically aligned to the y-axis, meaning that both points
+defining each gate will share the same x-coordinate. You want to be the best, so you are
 going to write a program to find the fastest path through a series of gates.
 
 Given a series of slalom gates, your program should find the shortest path through those gates.
 
 Input definition
 
-The first line of an input file for this problem will be an integer T, the number of test cases. For each test case, the
-first line will contain two integers, N and S; they respectively represent the number of slalom gates and your starting
-position's y-coordinate. The next N lines of each test case contain two integers, y1 and y2, describing the y-coordinates
-of the slalom gates, in order of increasing x-coordinate. Your starting x-coordinate is always 0 and consecutive gates are
+The first line of an input file for this problem will be an integer T, the number of test cases.
+For each test case, the first line will contain two integers, N and S; they respectively represent
+the number of slalom gates and your starting position's y-coordinate. The next N lines of each
+test case contain two integers, y1 and y2, describing the y-coordinates of the slalom gates, in
+order of increasing x-coordinate. Your starting x-coordinate is always 0 and consecutive gates are
 at consecutive x-coordinates (i.e. x=1,2,3...N).
 
 The following bounds shall apply:
@@ -29,8 +35,9 @@ y1 < y2
 
 Output definition
 
-Your output should contain T lines, one for each given test case. For each test case, your output should be the length of
-the shortest path from your starting position through all the slalom gates, rounded to 4 decimal places.
+Your output should contain T lines, one for each given test case. For each test case, your output
+should be the length of the shortest path from your starting position through all the slalom gates,
+rounded to 4 decimal places.
 
 Example input
 
@@ -66,7 +73,7 @@ def plot_line(y_pts, x_pts, style="o", color="", fig_num=0, clf=False, show=True
     plt.draw()
     if show:
         plt.show()
-        
+
 
 def get_line(x1, y1, x2, y2):
     # Get line function [m, n] from two points (y = m*x + n)
@@ -104,7 +111,8 @@ def plot_gates_and_path(x0, y0, gates_list, best_path, lines_up=[], lines_down=[
     plot_gates(x0, y0, gates_list)
     for i in range(len(best_path) - 1):
         plot_line([best_path[i + 1][1]], [best_path[i + 1][0]], color="y", style="o")
-        plot_line([best_path[i][1], best_path[i + 1][1]], [best_path[i][0], best_path[i + 1][0]], color="c", style="-")
+        plot_line([best_path[i][1], best_path[i + 1][1]], [best_path[i][0], best_path[i + 1][0]],
+                  color="c", style="-")
     for tx0, ty0, tx1, ty1, _1, _2 in lines_up:
         plot_line([ty1], [tx1], color="w", style="x")
         plot_line([ty0, ty1], [tx0, tx1], color="m", style="-")
@@ -255,7 +263,7 @@ if __name__ == "__main__":
                 y1, y2 = y2, y1
             gates_list.append((y1, y2))
         case_idx += num_gates + 1
-        
+
         if show_debug_plots:
             plot_gates(original_x0, original_y0, gates_list)
             input("Press ENTER to continue")
@@ -279,7 +287,8 @@ if __name__ == "__main__":
             for prev_x0, prev_y0, prev_x, prev_y1, prev_m1, prev_n1 in lines_down:
                 y1_proj = prev_m1 * x + prev_n1
                 if y1_proj <= y1:
-                    # discard old line and all lines after it, the new gate can be reached without worrying going through the old gate's edge
+                    # discard old line and all lines after it, the new gate can be reached without
+                    # worrying going through the old gate's edge
                     break
                 else:
                     # We have to worry about two lines now: the old one and the new one
@@ -296,7 +305,8 @@ if __name__ == "__main__":
             for prev_x0, prev_y0, prev_x, prev_y2, prev_m2, prev_n2 in lines_up:
                 y2_proj = prev_m2 * x + prev_n2
                 if y2_proj >= y2:
-                    # discard old line and all lines after it, the new gate can be reached without worrying going through the old gate's edge
+                    # discard old line and all lines after it, the new gate can be reached without
+                    # worrying going through the old gate's edge
                     break
                 else:
                     # We have to worry about two lines now: the old one and the new one
@@ -346,10 +356,11 @@ if __name__ == "__main__":
                 y0 = old_y0
 
             if show_debug_plots:
-                plot_gates_and_path(original_x0, original_y0, gates_list, best_path, lines_up, lines_down)
+                plot_gates_and_path(original_x0, original_y0, gates_list, best_path, lines_up,
+                                    lines_down)
                 input("Press ENTER to continue")
 
-        # Solve last part of the path, where we want to reach the gate 
+        # Solve last part of the path, where we want to reach the gate
         m1 = lines_down[0][4]
         m2 = lines_up[0][4]
         if m1 <= 0 and m2 >= 0:

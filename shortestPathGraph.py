@@ -1,10 +1,5 @@
 #!/usr/bin/env python2
 
-import Queue
-from collections import defaultdict
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
-
 """
 Challenge from HackerRank. https://www.hackerrank.com/challenges/ctci-bfs-shortest-reach
 We have an undirected graph consisting of n nodes where each node is labeled from 1 to n and
@@ -13,6 +8,10 @@ distance from s to all the other nodes in the graph. Then print a single line of
 space-separated integers listing all the distances (ordered sequentially by node number).
 If a node is disconnected from s, print -1 for that distance.
 """
+
+import Queue
+from collections import defaultdict
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 class Graph:
@@ -88,7 +87,7 @@ class World:
                 buff += "{} ".format(-1)
             else:
                 buff += "{} ".format(self.pathlengths[node][n])
-        print buff[:-1]
+        print(buff[:-1])
 
     def BFS(self, state0, goal):
         # Add initial state to the queue
@@ -137,8 +136,7 @@ class World:
 
 
 if __name__ == "__main__":
-    input = \
-"""2
+    inp = """2
 10 10
 1 2
 1 3
@@ -155,7 +153,7 @@ if __name__ == "__main__":
 2 3
 2"""
 
-    lines = input.split("\n")
+    lines = inp.split("\n")
     t = int(lines[0])
     idx = 1
     for i in range(t):
@@ -164,7 +162,7 @@ if __name__ == "__main__":
         edge_cost = 6
         graph = Graph(n, edge_cost)
         world = World(n, edge_cost)
-        for i in xrange(m):
+        for i in range(m):
             x, y = [int(x) for x in lines[idx].split()]
             idx += 1
             graph.addConnection(x - 1, y - 1)
@@ -172,13 +170,13 @@ if __name__ == "__main__":
         s = int(lines[idx])
         idx += 1
         printSeparator("*")
-        print "Graph Results:"
+        print("Graph Results:")
         t0 = getTime()
         graph.findAllDistances(s-1)
-        print "Time: {}s".format(getTime() - t0)
+        print("Time: {}s".format(getTime() - t0))
         printSeparator()
-        print "World Results:"
+        print("World Results:")
         t1 = getTime()
         world.findAllDistances(s - 1)
-        print "Time: {}s".format(getTime() - t1)
+        print("Time: {}s".format(getTime() - t1))
     printSeparator("*")

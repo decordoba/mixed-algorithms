@@ -49,7 +49,8 @@ if __name__ == "__main__":
 7,3
 7,7"""
     print("INPUT:")
-    [print(line) for line in inp.split("\n")]
+    for line in inp.split("\n"):
+        print(line)
     print("\nOUTPUT:")
     lines = inp.split("\n")
     cases = int(lines[0])

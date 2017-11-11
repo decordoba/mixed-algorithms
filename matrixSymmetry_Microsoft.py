@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Easier Challenge 1 from Microsoft Competition at WashU (12 min)
 
@@ -62,6 +65,7 @@ def convert_matrix_string_to_list(s):
     rows = s.split(";")
     return [[int(el) for el in row.split(",")] for row in rows]
 
+
 def is_matrix_symmetric(m):
     # Assume all matrixs are square
     n = len(m)
@@ -72,6 +76,7 @@ def is_matrix_symmetric(m):
                 return False
     return True
 
+
 if __name__ == "__main__":
     inp = """-84,17;-42,-4
 36,27;62,55
@@ -79,6 +84,10 @@ if __name__ == "__main__":
 2,48;64,-64
 -48
 13,-15,86,-43,6,54,-42;-15,97,31,-70,-48,-86,3;86,31,89,-66,-88,74,7;-43,-70,-66,49,6,-58,15;6,-48,-88,6,51,40,-43;54,-86,74,-58,40,-7,2;-42,3,7,15,-43,2,79"""
+    print("INPUT:")
+    for line in inp.split("\n"):
+        print(line)
+    print("\nOUTPUT:")
 
     for line in inp.split("\n"):
         m = convert_matrix_string_to_list(line)

@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 
-import math
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 I had to face this challenge in one of my interviews.
 This problem is similar (but easier) to getMinimumNumberFromString, which can be found in
@@ -16,6 +13,11 @@ convertNumber(567890) --> 67890
 convertNumber(631) --> 62
 convertNumber(998577) --> 99867
 """
+
+import math
+import sys
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 
 def replaceTwoDigitsByMean(X):
     # Convert X to string
@@ -35,6 +37,7 @@ def replaceTwoDigitsByMean(X):
     # Therefore, replacing the last pair by the mean will give us the max number
     return int(strX[:-2] + calculateCeilMean(int(strX[-2]), int(strX[-1])))
 
+
 def calculateCeilMean(a, b):
     # Take mean of a and b and apply a ceil. Example: a=3, b=6 --> (3+6)/2=4.5 becomes 5
     return int(math.ceil((a + b) / 2.0))
@@ -44,6 +47,6 @@ if __name__ == "__main__":
     args = readInputArguments(input="")
     if len(args) > 0:
         number = parseString(args)[0][0]
-        print replaceTwoDigitsByMean(int(number))
+        print(replaceTwoDigitsByMean(int(number)))
     else:
-        print "Usage: python {} POSITIVE_INTEGER".format(sys.argv[0])
+        print("Usage: python {} POSITIVE_INTEGER".format(sys.argv[0]))

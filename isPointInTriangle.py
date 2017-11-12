@@ -1,8 +1,5 @@
 #!/usr/bin/env python2
 
-import math
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 I had to face this challenge in one of my interviews.
 We get 3 2D point that make a triangle ABC (ax, ay, bx, by, cx, cy). We also get another point P
@@ -15,6 +12,11 @@ isPointInTrinagle(0,5,4,0,5,6,2,1) --> False
 isPointInTrinagle(0,5,4,0,5,6,2,3) --> True
 """
 
+import math
+import sys
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+
 def isPointInTrinagle(ax, ay, bx, by, cx, cy, px, py):
     """
     Returns True if a point P is inside a triangle ABC, and False otherwise
@@ -25,6 +27,7 @@ def isPointInTrinagle(ax, ay, bx, by, cx, cy, px, py):
     pointOutside |= isPointOutsideTriangle(bx, by, cx, cy, ax, ay, px, py)
     pointOutside |= isPointOutsideTriangle(cx, cy, ax, ay, bx, by, px, py)
     return not pointOutside
+
 
 def isPointOutsideTriangle(ax, ay, bx, by, cx, cy, px, py):
     """
@@ -58,11 +61,13 @@ def isPointOutsideTriangle(ax, ay, bx, by, cx, cy, px, py):
     # P is might be inside or outside the triangle ABC (see above explanation)
     return False
 
+
 def getDistance(p0x, p0y, p1x, p1y):
     """
     Gets the distance between two points
     """
     return math.sqrt((p0x - p1x)**2 + (p0y - p1y)**2)
+
 
 def isTriangle(ax, ay, bx, by, cx, cy):
     """
@@ -84,20 +89,20 @@ if __name__ == "__main__":
     args = readInputArguments(input="")
     if len(args) > 0:
         ax, ay, bx, by, cx, cy, px, py = parseString(args, "int")[0]
-        print "Using input: A={}, B={}, C={}, P={}".format((ax, ay), (bx, by), (cx, cy), (px, py))
+        print("Using input: A={}, B={}, C={}, P={}".format((ax, ay), (bx, by), (cx, cy), (px, py)))
     else:
-        print "Usage: python {} AX AY BX BY CX CY PX PY".format(sys.argv[0])
-        print "No input arguments. Using default input: A={}, B={}, C={}, P={}".format((ax, ay),
+        print("Usage: python {} AX AY BX BY CX CY PX PY".format(sys.argv[0]))
+        print("No input arguments. Using default input: A={}, B={}, C={}, P={}".format((ax, ay),
                                                                                        (bx, by),
                                                                                        (cx, cy),
-                                                                                       (px, py))
+                                                                                       (px, py)))
 
     if not isTriangle(ax, ay, bx, by, cx, cy):
-        print "[{}, {}, {}] is not a triangle".format((ax, ay), (bx, by), (cx, cy))
+        print("[{}, {}, {}] is not a triangle".format((ax, ay), (bx, by), (cx, cy)))
     else:
         if isPointInTrinagle(ax, ay, bx, by, cx, cy, px, py):
-            print "{} is inside the triangle [{}, {}, {}]".format((px, py), (ax, ay),
-                                                                  (bx, by), (cx, cy))
+            print("{} is inside the triangle [{}, {}, {}]".format((px, py), (ax, ay),
+                                                                  (bx, by), (cx, cy)))
         else:
-            print "{} is NOT inside the triangle [{}, {}, {}]".format((px, py), (ax, ay),
-                                                                      (bx, by), (cx, cy))
+            print("{} is NOT inside the triangle [{}, {}, {}]".format((px, py), (ax, ay),
+                                                                      (bx, by), (cx, cy)))

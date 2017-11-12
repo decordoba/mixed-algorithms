@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 From Leetcode: https://leetcode.com/problems/add-two-numbers/
 You are given two non-empty linked lists representing two non-negative integers.
@@ -8,12 +11,13 @@ numbers do not contain any leading zero, except the number 0 itself.
 
 BASE = 10  # Base used for splitting in digits
 
+
 # Definition for singly-linked list
 class ListNode(object):
     def __init__(self, x):
         self.val = x
         self.next = None
-    
+
     def __str__(self):
         stdout = "({}".format(self.val)
         next = self.next
@@ -22,6 +26,7 @@ class ListNode(object):
             next = next.next
         stdout += ")"
         return stdout
+
 
 def create_ListNode_from_number(num):
     # From an int, saves it in digits in a linked list
@@ -41,6 +46,7 @@ def create_ListNode_from_number(num):
     #     node = ListNode(0)
     return next_node
 
+
 def get_number_from_ListNode(node):
     # From a ListNode, recover the number
     if node is None:
@@ -53,11 +59,12 @@ def get_number_from_ListNode(node):
         num = node.val * BASE**i + num
     return num
 
+
 def add_two_numbers(l1, l2):
     """
     Get 2 linked lists representing two numbers, and return
     another linked list representing their sum
-    
+
     :type l1: ListNode
     :type l2: ListNode
     :rtype: ListNode
@@ -84,19 +91,20 @@ def add_two_numbers(l1, l2):
             l1 = l1.next
     if carry > 0:
         idx.next = ListNode(carry)
-    return head.next    
-        
+    return head.next
+
+
 if __name__ == "__main__":
     num1 = 78027
     num2 = 968432
     result = num1 + num2
-    print "REGULAR SUM:"
-    print str(num1) + " + " + str(num2) +  " = " + str(result)
+    print("REGULAR SUM:")
+    print(str(num1) + " + " + str(num2) + " = " + str(result))
 
     n1 = create_ListNode_from_number(num1)
     n2 = create_ListNode_from_number(num2)
     r = add_two_numbers(n1, n2)
-    print "\nLINKED LIST SUM:"
-    print str(n1) + " + " + str(n2) +  " = " + str(r)
-    
-    print "\nREADABLE RESULT: {}".format(get_number_from_ListNode(r))
+    print("\nLINKED LIST SUM:")
+    print(str(n1) + " + " + str(n2) + " = " + str(r))
+
+    print("\nREADABLE RESULT: {}".format(get_number_from_ListNode(r)))

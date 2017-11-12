@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 I took this challenge in HackerRank. It was not too challenging, but I liked the idea of using
@@ -11,6 +12,7 @@ added to the rear. This is called a First-In-First-Out (FIFO) data structure bec
 element added to the queue (i.e., the one that has been waiting the longest) is always the first
 one to be removed. In this challenge, you must first implement a queue using two stacks.
 """
+
 
 class simpleQueue(object):
     def __init__(self):

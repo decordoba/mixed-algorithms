@@ -1,7 +1,5 @@
 #!/usr/bin/env python2
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 Solved in leetcode: https://leetcode.com/problems/largest-palindrome-product
 Find the largest palindrome made from the product of two n-digit numbers. The range of n is [1,8].
@@ -17,6 +15,8 @@ n:7, factors:9997647,9998017, palindrome:99956644665999, result:877
 n:8, factors:99990001,99999999, palindrome:9999000000009999, result:475
 n:9, factors:999920317,999980347, palindrome:999900665566009999, result:1226  # Takes forever!!
 """
+
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 def generatePalindromes(num_digits, order="asc"):
@@ -47,13 +47,13 @@ def generatePalindromes(num_digits, order="asc"):
 
     # Palindromes with even number of digits
     if num_digits % 2 == 0:
-        for i in xrange(numF, numL, order):
+        for i in range(numF, numL, order):
             si = str(i)
             pal = int(si + si[::-1])
             palindromes.append(pal)
     # Palindromes with odd number of digits
     elif num_digits > 1:
-        for i in xrange(numF, numL, order):
+        for i in range(numF, numL, order):
             for j in seq:
                 si = str(i)
                 pal = int(si + str(j) + si[::-1])
@@ -63,6 +63,7 @@ def generatePalindromes(num_digits, order="asc"):
         palindromes = seq
         palindromes.remove(0)
     return palindromes
+
 
 def checkPalindromes(num_digits, break_fn, *args):
     """
@@ -75,25 +76,26 @@ def checkPalindromes(num_digits, break_fn, *args):
     half = num_digits // 2
     # Palindromes with even number of digits
     if num_digits % 2 == 0:
-        for i in xrange(10 ** half - 1, 10 ** (half - 1) - 1, -1):
+        for i in range(10 ** half - 1, 10 ** (half - 1) - 1, -1):
             si = str(i)
             pal = int(si + si[::-1])
             if break_fn(pal, *args):
                 return pal
     # Palindromes with odd number of digits
     elif num_digits > 1:
-        for i in xrange(10 ** half - 1, 10 ** (half - 1) - 1, -1):
-            for j in xrange(9, -1, -1):
+        for i in range(10 ** half - 1, 10 ** (half - 1) - 1, -1):
+            for j in range(9, -1, -1):
                 si = str(i)
                 pal = int(si + str(j) + si[::-1])
                 if break_fn(pal, *args):
                     return pal
     # Palindromes with only one digit
     else:
-        for pal in xrange(9, -1, -1):
+        for pal in range(9, -1, -1):
             if break_fn(pal, *args):
                 return pal
     return -1
+
 
 def isDivisibleByTwoNDigitNumbers(num, n):
     """
@@ -118,13 +120,14 @@ def isDivisibleByTwoNDigitNumbers(num, n):
     while smalldiv >= divmin and bigdiv <= divmax:
         total = smalldiv * bigdiv
         if total == num:
-            print "Factors:", smalldiv, bigdiv
+            print("Factors:", smalldiv, bigdiv)
             return True
         elif total < num:
             bigdiv += 1
         else:
             smalldiv -= 1
     return False
+
 
 def largestPalindrome(n):
     """
@@ -135,14 +138,15 @@ def largestPalindrome(n):
     pal = checkPalindromes(n * 2, isDivisibleByTwoNDigitNumbers, n)
     if pal < 0:
         pal = checkPalindromes(n * 2 - 1, isDivisibleByTwoNDigitNumbers, n)
-    print "Palindrome:", pal
+    print("Palindrome:", pal)
     return pal % 1337
+
 
 if __name__ == "__main__":
     default = "2"
-    input = int(readInputArguments(default))
-    print "Number of digits:", input
+    inp = int(readInputArguments(default))
+    print("Number of digits:", inp)
     t = getTime()
-    output = largestPalindrome(input)
-    print "Result:", output
-    print "Time taken: {}".format(getTime() - t)
+    output = largestPalindrome(inp)
+    print("Result:", output)
+    print("Time taken: {}".format(getTime() - t))

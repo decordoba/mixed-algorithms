@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Medium Challenge 3 from Microsoft Competition at WashU (20min)
 
@@ -84,6 +87,7 @@ Example output
 \1.2\3*\4\5\..*\6\7\*.*
 \4\5\6\7\8
 """
+
 
 if __name__ == "__main__":
     inp = r"""\1

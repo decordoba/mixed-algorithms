@@ -45,7 +45,8 @@ def attempt_sequence_sorting(seq):
                 seq[i + 2] = tmp
         # print i, seq
     return seq[i] <= seq[i + 1]
- 
+
+
 def can_it_be_sorted(seq):
     """
     Count number of inversions to determine if the list is sortable or not.
@@ -57,25 +58,26 @@ def can_it_be_sorted(seq):
             if s > seq[j]:
                 inversions += 1
     return inversions % 2 == 0
-    
+
+
 if __name__ == "__main__":
     # Get input from arguments passed, if any, and parse it
     default = """17 16 15 12 19 20 33 40 10 21 29 30 11"""
     input = readInputArguments(input=default)
     seq = parseString(input, type="float")[0]
-    print "Input:           {}".format(seq)
-    
+    print("Input:           {}".format(seq))
+
     # Test both algorithms
     can_be_sorted1 = can_it_be_sorted(seq)
     can_be_sorted2 = attempt_sequence_sorting(seq)
-    
+
     # Print results
-    print "Sorting attempt: {}".format(seq)
+    print("Sorting attempt: {}".format(seq))
     if can_be_sorted1:
-        print "YES, it is sortable"
+        print("YES, it is sortable")
     else:
-        print "NO, it is not sortable"
+        print("NO, it is not sortable")
     if can_be_sorted2:
-        print "YES, it is sortable"
+        print("YES, it is sortable")
     else:
-        print "NO, it is not sortable"
+        print("NO, it is not sortable")

@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Function to check if a tree is a binary search tree.
 
@@ -19,6 +22,7 @@ WRONG: (5 is grater than 2 but should be also smaller than 4)
 1   5   6   8
 """
 
+
 # Node class, every node will hold a value and a Left and Right child node
 # Leaf nodes will have both children None
 class Node:
@@ -29,13 +33,15 @@ class Node:
 
     def __str__(self):
         return "Node: {}.   Children: ({}, {})".format(self.val,
-                                                         None if self.l is None else self.l.val,
-                                                         None if self.r is None else self.r.val)
-    
+                                                       None if self.l is None else self.l.val,
+                                                       None if self.r is None else self.r.val)
+
+
 # Recursive solution
 def is_binary_search_tree_recursive(root_node, verbose=False):
     return check_node(root_node, verbose=verbose)
-    
+
+
 def check_node(node, min_val=None, max_val=None, verbose=False):
     if verbose:
         print(node)
@@ -57,6 +63,7 @@ def check_node(node, min_val=None, max_val=None, verbose=False):
         if not check_node(node.r, max_val=max_val, min_val=new_min_val, verbose=verbose):
             return False
     return True
+
 
 # Iterative solution
 def is_binary_search_tree_iterative(root_node, verbose=False):
@@ -81,8 +88,9 @@ def is_binary_search_tree_iterative(root_node, verbose=False):
             queue.append((node.r, max_val, new_min_val))
     return True
 
-# Wrong solution (and my 1st approach). All children from left node also need to be smaller than current node,
-# and all children from right node also need to be greater than current node.
+
+# Wrong solution (and my 1st approach). All children from left node also need to be smaller than
+# current node, and all children from right node also need to be greater than current node.
 def is_binary_search_tree_wrong_approach(root_node):
     queue = [root_node]
     while len(queue) > 0:
@@ -97,7 +105,7 @@ def is_binary_search_tree_wrong_approach(root_node):
             queue.append(node.l)
     return True
 
-    
+
 if __name__ == "__main__":
     # Create BST tree
     node2 = Node(2)
@@ -109,10 +117,10 @@ if __name__ == "__main__":
     node2.l = Node(5)
     node2.r = Node(7)
     node3.r = node2
-    
+
     root = Node(8)
-    root.l =node3
-    
+    root.l = node3
+
     node2 = Node(10)
     node2.l = Node(9)
     node2.r = Node(11)
@@ -122,18 +130,18 @@ if __name__ == "__main__":
     node2.l = Node(13)
     node2.r = Node(15)
     node3.r = node2
-    
-    root.r =node3
+
+    root.r = node3
 
     verbose = False
     print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
     print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
     print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))
-    print()
-    
+    print("")
+
     # Make tree not BST
     root.l.r.r.val = 9
-    
+
     print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
     print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
     print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))

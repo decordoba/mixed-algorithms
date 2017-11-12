@@ -36,22 +36,21 @@ def count_paths_staircase(length_staircase, possible_actions):
 
 
 if __name__ == "__main__":
-    default = \
-"""1 2 3
+    default = """1 2 3
 1
 3
 7
 12"""
     input = readFileArgument(input=default)
     grid = parseString(input, type="int")
-    print "Input:"
-    print input
-    
+    print("Input:")
+    print(input)
+
     allowed_actions = grid[0]
     list_staircases = grid[1:]
     longest_staircase = max(list_staircases)[0]
-    
-    print "\nOutput:"
+
+    print("\nOutput:")
     paths = count_paths_staircase(longest_staircase, allowed_actions)
     for i in list_staircases:
-        print paths[i[0] - 1]
+        print(paths[i[0] - 1])

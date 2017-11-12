@@ -1,16 +1,20 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
 """
 Hash table implementation without using a dictionary
 """
+
 
 class hashTable:
     def __init__(self, number_buckets=100):
         self.number_buckets = number_buckets
         self.ht = [[] for _ in range(self.number_buckets)]
         self.k = []
-        
+
     def get_bucket_number(self, key):
         return hash(key) % self.number_buckets
-    
+
     def add(self, key, value):
         bucket = self.get_bucket_number(key)
         key_found = False
@@ -22,7 +26,7 @@ class hashTable:
         if not key_found:
             self.ht[bucket].append((key, value))
             self.k.append(key)
-    
+
     def get(self, key):
         bucket = self.get_bucket_number(key)
         for other_key, value in self.ht[bucket]:
@@ -30,7 +34,7 @@ class hashTable:
                 return value
         raise KeyError("Key '{}' not found in hashTable".format(key))
         return None
-        
+
     def remove(self, key):
         bucket = self.get_bucket_number(key)
         key_pos = None
@@ -40,7 +44,7 @@ class hashTable:
                 break
         if key_pos is not None:
             self.ht[bucket] = self.ht[bucket][:key_pos] + self.ht[bucket][key_pos + 1:]
-    
+
     def get_bucket(self, number):
         s = ""
         for key, value in self.ht[number]:
@@ -76,7 +80,7 @@ if __name__ == "__main__":
 
     print("Empty Hash Table:", ht1)
 
-    ht1.add("km", 1000)    
+    ht1.add("km", 1000)
     ht1["m"] = 1
     ht1["hm"] = 100
     ht1.add("mm", 0.001)
@@ -87,7 +91,7 @@ if __name__ == "__main__":
     print("Full Hash Table:", ht1)
     print("Hash Table Length:", len(ht1))
     print("Keys: {}".format(ht1.keys()))
-    
+
     print("Bucket Distribution:\n--------------------")
     for i in range(num_buckets):
         print("{:<3} {}".format(i, ht1.get_bucket(i)))
@@ -97,5 +101,5 @@ if __name__ == "__main__":
     print("Access key {}: {}".format("mile", ht1["mile"]))
     ht1.remove("inch")
     print("Hash Table after removing element:", ht1)
-    print("Accessing a removed element will result in a KeyError")
+    print("Accessing a removed element will result in a KeyError:")
     print("Access key {}: {}".format("inch", ht1.get("inch")))

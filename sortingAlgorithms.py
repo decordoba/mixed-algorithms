@@ -1,11 +1,12 @@
 #!/usr/bin/env python2
 
-import heapq
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
-
 """
 A sample of the sorting algorithms that I have implemented for different algorithms
 """
+
+import heapq
+from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 
 def bubbleSort(a):
     n = len(a)
@@ -14,12 +15,13 @@ def bubbleSort(a):
         newSwaps = 0
         for j in range(n - i - 1):
             if a[j] > a[j + 1]:
-                a[j], a[j + 1] = a[j + 1], a[j]  #Swap
+                a[j], a[j + 1] = a[j + 1], a[j]  # Swap
                 newSwaps += 1
         if newSwaps == 0:
             break
         numSwaps += newSwaps
     return numSwaps
+
 
 def insertionSort(a):
     n = len(a)
@@ -28,9 +30,10 @@ def insertionSort(a):
         for j in range(i - 1, -1, -1):
             if a[j] <= a[j+1]:
                 break
-            a[j], a[j + 1] = a[j + 1], a[j]  #Swap
+            a[j], a[j + 1] = a[j + 1], a[j]  # Swap
             numSwaps += 1
     return numSwaps
+
 
 def selectionSort(a):
     n = len(a)
@@ -48,12 +51,14 @@ def selectionSort(a):
             numSwaps += 1
     return numSwaps
 
+
 def mergeSort(a):
     b, swaps = mergeRecursive(a)
     # Save ordered list in original list a
     for i in range(len(a)):
         a[i] = b[i]
     return swaps
+
 
 def mergeRecursive(a):
     len_a = len(a)
@@ -83,8 +88,10 @@ def mergeRecursive(a):
         j += 1
     return buff, sw1 + sw2 + sw3
 
+
 def quickSort(a):
     return quickRecursive(a, 0, len(a))
+
 
 def quickRecursive(a, i, j):
     idx_pivot, numSwaps = sortAroundPivot(a, i, j)
@@ -93,6 +100,7 @@ def quickRecursive(a, i, j):
     if j - idx_pivot > 1:
         numSwaps += quickRecursive(a, idx_pivot, j)
     return numSwaps
+
 
 def sortAroundPivot(a, i, j):
     pivot = a[(i + j) // 2]
@@ -110,6 +118,7 @@ def sortAroundPivot(a, i, j):
             numSwaps += 1
     return i, numSwaps
 
+
 def quickSortNotInPlace(a):
     if len(a) <= 1:
         return a
@@ -124,20 +133,24 @@ def quickSortNotInPlace(a):
             right.append(i)
         else:
             center.append(i)
-    return quicksort(left) + center + quicksort(right)
+    return quickSortNotInPlace(left) + center + quickSortNotInPlace(right)
+
 
 def heapSort(a):
     heapq.heapify(a)
-    a[:] = [heapq.heappop(a) for i in xrange(len(a))]
+    a[:] = [heapq.heappop(a) for i in range(len(a))]
     return len(a)
+
 
 ####################################################################################################
 ## After this line, less optimal algorithms (that I didn't have the heart to delete) can be found ##
 ####################################################################################################
 
+
 def mergeSort2(a):
     # Like mergeSort but performs swaps over a. Slower than mergeSort
     return mergeRecursive2(a, 0, len(a) // 2, len(a))
+
 
 def mergeRecursive2(a, i, j, k):
     if i == j:
@@ -176,56 +189,56 @@ if __name__ == "__main__":
     default = "1 5 2 8 4 14 2 7 4 9 8 1 10 7 4 6 11 0 7 12 6 16 10"
     args = readInputArguments(input=default)
     a = parseString(args, "int")[0]
-    print "Original:       {} -> Unsorted".format(a)
+    print("Original:       {} -> Unsorted".format(a))
 
     # Bubble sort
     a1 = list(a)
     time = getTime()
     it1 = bubbleSort(a1)
     time = getTime() - time
-    print "Bubble sort:    {} -> Sorted in {} iterations ({:3}s)".format(a1, it1, time)
+    print("Bubble sort:    {} -> Sorted in {} iterations ({:3}s)".format(a1, it1, time))
 
     # Insertion sort
     a2 = list(a)
     time = getTime()
     it2 = insertionSort(a2)
     time = getTime() - time
-    print "Insertion sort: {} -> Sorted in {} iterations ({:3}s)".format(a2, it2, time)
+    print("Insertion sort: {} -> Sorted in {} iterations ({:3}s)".format(a2, it2, time))
 
     # Selection sort
     a3 = list(a)
     time = getTime()
     it3 = selectionSort(a3)
     time = getTime() - time
-    print "Selection sort: {} -> Sorted in {} iterations ({:3}s)".format(a3, it3, time)
+    print("Selection sort: {} -> Sorted in {} iterations ({:3}s)".format(a3, it3, time))
 
     # Merge sort
     a4 = list(a)
     time = getTime()
     it4 = mergeSort(a4)
     time = getTime() - time
-    print "Merge sort:     {} -> Sorted in {} iterations ({:3}s)".format(a4, it4, time)
+    print("Merge sort:     {} -> Sorted in {} iterations ({:3}s)".format(a4, it4, time))
 
     # Merge sort "in place" (slightly slower)
     a5 = list(a)
     time = getTime()
     it5 = mergeSort2(a5)
     time = getTime() - time
-    print "Merge sort 2:   {} -> Sorted in {} iterations ({:3}s)".format(a5, it5, time)
+    print("Merge sort 2:   {} -> Sorted in {} iterations ({:3}s)".format(a5, it5, time))
 
     # Quick sort
     a6 = list(a)
     time = getTime()
     it6 = quickSort(a6)
     time = getTime() - time
-    print "Quick sort:     {} -> Sorted in {} iterations ({:3}s)".format(a6, it6, time)
+    print("Quick sort:     {} -> Sorted in {} iterations ({:3}s)".format(a6, it6, time))
 
     # Heap sort
     a7 = list(a)
     time = getTime()
     it7 = heapSort(a7)
     time = getTime() - time
-    print "Heap sort:      {} -> Sorted in {} iterations ({:3}s)".format(a7, it7, time)
+    print("Heap sort:      {} -> Sorted in {} iterations ({:3}s)".format(a7, it7, time))
 
     # Quick sort not in place
     a8 = list(a)
@@ -233,4 +246,4 @@ if __name__ == "__main__":
     quickSortNotInPlace(a8)
     it8 = "??"
     time = getTime() - time
-    print "Quick sort 2:   {} -> Sorted in {} iterations ({:3}s)".format(a8, it8, time)
+    print("Quick sort 2:   {} -> Sorted in {} iterations ({:3}s)".format(a8, it8, time))

@@ -23,33 +23,27 @@ def evaluate_mastermind_position(position, solution, choices=["R", "G", "B", "Y"
     hits = 0
     pseudo_hits = 0
     
-    # Create hash-table with all possible pseudo-hits (assuming there are no hits)
+    # Create hash-table with all possible pseudo-hits, and count hits
     ht = {c:0 for c in choices}
-    for p in position:
-        ht[p] += 1
     ht2 = {c:0 for c in choices}
-    for s in solution:
-        ht2[s] += 1
+    for p, s in zip(position, solution):
+        if p == s:
+            hits += 1
+        else:
+            ht[p] += 1
+            ht2[s] += 1
+
+    # Count pseudo-hits
     for choice in ht:
         ht[choice] = min(ht2[choice], ht[choice])
-
-    # Discount hits from pseudo-hits count
-    for i, s in enumerate(solution):
-        if solution[i] == position[i]:
-            ht[s] -= 1
-            hits += 1
-    
-    # Count remaining pseudo-hits
-    for choice in ht:
-        if ht[choice] > 0:
-            pseudo_hits += 1
+        pseudo_hits += ht[choice]
     
     return hits, pseudo_hits
 
 
 if __name__ == "__main__":
-    guess = "RRGG"
-    sol = "RGBY"
+    guess = "RRGB"
+    sol = "BGRR"
     print("INPUT:")
     print("Guess: {}\nSolution: {}".format(guess, sol))
     hits, pseudo_hits = evaluate_mastermind_position(guess, sol)

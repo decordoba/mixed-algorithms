@@ -1,3 +1,14 @@
+#!/usr/bin/env python
+# Works in python2 and python3
+
+"""
+Algorithm from a Google interview.
+Find length of shortest path in a maze from start_position to end_position.
+Three possible values in maze: 0=space, 1=wall, 6=enemy (takes one life from player)
+We want to find shortest path length, knowing that we can never consume all our lifes,
+but there is no penalty for spending all but one.
+"""
+
 NEIGHBORS = [(0, 1), (0, -1), (1, 0), (-1, 0)]
 
 

@@ -1,4 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
+
 
 """
 I had to face a similar challenge in an interview, and then I found it again in HackerRank.
@@ -18,8 +20,10 @@ Y Y 0 0
 X 0 0 Y
 """
 
-import Queue
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+import queue
+from basic.basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
 
 # Matrix that considers the diagonal cells adjacent
 ADJACENT_MATRIX = [(-1, -1), (-1, 0), (-1, 1),
@@ -46,7 +50,7 @@ def countRegions(grid):
                 num_regions += 1
                 region = 0  # Counter for number of cells in region
                 ht.add((i, j))
-                q = Queue.Queue()
+                q = queue.Queue()
                 q.put((i, j))
                 # We visit and add to ht all the cells in the region
                 while not q.empty():
@@ -69,7 +73,7 @@ if __name__ == "__main__":
 0 1 1 0
 0 0 1 0
 1 0 0 1"""
-    input = readFileArgument(input=default, print_input=True)
-    grid = parseString(input, type="int")
+    inp = readFileArgument(default_input=default, print_input=True)
+    grid = parseString(inp, type="int")
     max_region, num_regions = countRegions(grid)
     print("Number of regions: {}\nLargest region:    {}".format(num_regions, max_region))

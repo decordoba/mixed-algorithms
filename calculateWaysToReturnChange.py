@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 Interesting code similar to countPathsStaircase.py.
@@ -11,7 +12,9 @@ Example: Goal: 6, Coins: [1, 2, 3] => Result: 7
 (1+1+1+1+1+1), (1+1+1+1+2), (1+1+1+3), (1+2+3), (3+3), (2+2+2), (1+1+2+2)
 """
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+# Find basic.py in https://github.com/decordoba/basic-python
+from basic.basic import readInputArguments, parseString, timeFunction
 
 
 def calculate_change_combinations_smart(goal, coins):
@@ -36,7 +39,6 @@ def calculate_change_combinations(goal, coins):
     that calculate_change_combinations_smart but it basically does exactly the
     same. In this case, we can observe ht and see what coins were added.
     """
-
     # Technically there is no need for sorting, I kept it because this was my original algorithm
     coins.sort()
     ht = {}
@@ -68,7 +70,7 @@ if __name__ == "__main__":
     # Format: goal money \n list of coin values to reach such value
     default = """100
 1 2 5 10 50 100"""
-    input = readInputArguments(input=default)
+    input = readInputArguments(default_input=default)
     parsed_input = parseString(input, type="int")
     if len(parsed_input) == 1:
         money_goal = parsed_input[0][0]
@@ -83,6 +85,6 @@ if __name__ == "__main__":
 
     print("Money goal: {} units\nAvailable coins: {}".format(money_goal, coins))
     print("Number of coin combinations to reach the goal: {}\n".format(num_comb1))
-    print("Time taken with marginally slower algorithm: {} seconds".format(t1))
-    print("Time taken with marginally faster algorithm: {} seconds".format(t2))
-    print("Both solution give the same result? {}".format("YES" if num_comb1 == num_comb2 else "NO"))
+    print("Time taken with marginally slower algorithm: {:0.7f} seconds".format(t1))
+    print("Time taken with marginally faster algorithm: {:0.7f} seconds".format(t2))
+    print("Both solution give the same result?", "YES" if num_comb1 == num_comb2 else "NO")

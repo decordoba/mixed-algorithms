@@ -1,4 +1,6 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
+
 
 """
 I found this code in HackerRank and found it really interesting. Tricky but so simple.
@@ -12,7 +14,8 @@ count_paths_staircase(3, [1, 2, 3]) --> 4: (1,1,1), (1,2), (2,1), (3)
 count_paths_staircase(7, [2, 3]) --> 3: (2,2,3), (2,3,2), (3,2,2)
 """
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+from basic.basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 def count_paths_staircase(length_staircase, possible_actions):
@@ -41,10 +44,10 @@ if __name__ == "__main__":
 3
 7
 12"""
-    input = readFileArgument(input=default)
-    grid = parseString(input, type="int")
+    inp = default
+    grid = parseString(inp, type="int")
     print("Input:")
-    print(input)
+    print(inp)
 
     allowed_actions = grid[0]
     list_staircases = grid[1:]

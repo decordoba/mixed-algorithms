@@ -9,6 +9,7 @@ digit. Add the two numbers and return it as a linked list. You may assume the tw
 numbers do not contain any leading zero, except the number 0 itself.
 """
 
+
 BASE = 10  # Base used for splitting in digits
 
 

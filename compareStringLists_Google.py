@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 Easy challenge for an internship at Google. Took me 15 min to write it.
@@ -28,9 +29,10 @@ Constraints: 1<=N<=10000, 1<=M<=10000, 1<=length_any_word_in_A_or_B<=10
              All the words only have lowercase English alphabet letters
 """
 
+
 import random
 import string
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+from basic.basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 def calculateValue(s):
@@ -72,7 +74,7 @@ def solution(A, B):
 
 # I did not submit this, but it is possible to speed up the above
 # code with a hash table. Hopefully it is not necessary, as we have
-# at most 10000, so at most O(M*N +M + N) (this would produce O(11M + 11N))
+# at most 10000, so at most O(M*N + M + N) (this would produce O(11M + 11N))
 # Empirically, the time difference is really big! 7s become 0.05s in the worst case
 def solution_faster(A, B):
     valuesA = calculateString(A)
@@ -111,7 +113,7 @@ if __name__ == "__main__":
     t1, sol1 = timeFunction(solution, A, B)
     t2, sol2 = timeFunction(solution_faster, A, B)
 
-    print("Time taken with slow algorithm: {} seconds".format(t1))
-    print("Time taken with fast algorithm: {} seconds".format(t2))
+    print("Time taken with slow algorithm: {:.5f} seconds".format(t1))
+    print("Time taken with fast algorithm: {:.5f} seconds".format(t2))
 
     print("Both solution give the same result? {}".format("YES" if sol1 == sol2 else "NO"))

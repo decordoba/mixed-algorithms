@@ -1,4 +1,5 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python
+# Works in python2 and python3
 
 """
 Awesome algorithm from HackerRank, which allowed me to learn about the
@@ -15,7 +16,9 @@ use Parity of Permutation to determine whether if it is sortable or not much fas
 See https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html for more.
 """
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+# Find basic.py in https://github.com/decordoba/basic-python
+from basic.basic import *
 
 
 def attempt_sequence_sorting(seq):
@@ -63,8 +66,8 @@ def can_it_be_sorted(seq):
 if __name__ == "__main__":
     # Get input from arguments passed, if any, and parse it
     default = """17 16 15 12 19 20 33 40 10 21 29 30 11"""
-    input = readInputArguments(input=default)
-    seq = parseString(input, type="float")[0]
+    inp = readInputArguments(default_input=default)
+    seq = parseString(inp, type="float")[0]
     print("Input:           {}".format(seq))
 
     # Test both algorithms

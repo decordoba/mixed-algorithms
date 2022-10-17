@@ -25,12 +25,9 @@ Example:
 Given as args:
     ["abbc", "bccd", "cat", "zaab", "yell", "bzs", "catch"]
 the function returns:
-    abbc, bccd, zaab 
+    abbc, bccd, zaab
     cat, bzs
 """
-
-import sys
-
 
 LETTERS_ALPHABET = 26
 
@@ -66,7 +63,6 @@ def rot_N(s, n):
     # Rotate string n characters
     # This function is not necessary to solve the problem, but it is fun to code!
     new_s = ""
-    minv = ord("a")
     maxv = ord("z")
     n = n % LETTERS_ALPHABET
     for c in s:
@@ -111,7 +107,7 @@ def test(inp, outp, first=False):
 
 if __name__ == "__main__":
     test(["abbc", "bccd", "cat", "zaab", "yell", "bzs", "catch"],
-         [["abbc", "bccd", "zaab"],["cat", "bzs"]], first=True)
+         [["abbc", "bccd", "zaab"], ["cat", "bzs"]], first=True)
     test([], [])
     test(["aa", "ba"], [])
     test(["", ""], [["", ""]])

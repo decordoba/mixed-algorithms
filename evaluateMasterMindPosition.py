@@ -22,10 +22,10 @@ and pseudo-hits.
 def evaluate_mastermind_position(position, solution, choices=["R", "G", "B", "Y"]):
     hits = 0
     pseudo_hits = 0
-    
+
     # Create hash-table with all possible pseudo-hits, and count hits
-    ht = {c:0 for c in choices}
-    ht2 = {c:0 for c in choices}
+    ht = {c: 0 for c in choices}
+    ht2 = {c: 0 for c in choices}
     for p, s in zip(position, solution):
         if p == s:
             hits += 1
@@ -37,7 +37,7 @@ def evaluate_mastermind_position(position, solution, choices=["R", "G", "B", "Y"
     for choice in ht:
         ht[choice] = min(ht2[choice], ht[choice])
         pseudo_hits += ht[choice]
-    
+
     return hits, pseudo_hits
 
 

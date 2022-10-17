@@ -22,6 +22,7 @@ from basic import *  # Find basic.py in https://github.com/decordoba/basic-pytho
 def manhattan(pos0, pos1):
     return abs(pos0[0] - pos1[0]) + abs(pos0[1] - pos1[1])
 
+
 def pluses_overlap(pos0, pos1, arm0, arm1):
     # Returns True if two pluses (defined by their center positions and their arm lengths) overlap,
     # False otherwise. This was the biggest challenge of the problem (for me)
@@ -36,21 +37,24 @@ def pluses_overlap(pos0, pos1, arm0, arm1):
     if (diff_x <= min_arm and diff_y <= max_arm) or (diff_x <= max_arm and diff_y <= min_arm):
         return True
     return False
-    
+
+
 def pluses_product(arm1, arm2):
     # The goal of the problem is to find the 2 pluses that maximize their product
     return (4 * arm1 + 1) * (4 * arm2 + 1)
 
+
 def print_grid(grid):
     # Print the grid in a human readable way
     w = len(grid[0].strip())
-    print "/" + "-" * w + "\\"
+    print("/" + "-" * w + "\\")
     for row in grid:
         row = row.strip()
         if len(row) == 0:
             continue
-        print "|" + row.replace("G", ".") + "|"
-    print "\\" + "-" * w + "/"
+        print("|" + row.replace("G", ".") + "|")
+    print("\\" + "-" * w + "/")
+
 
 def create_solution(grid, plus1, plus2, arm1, arm2, symbol1="#", symbol2="@"):
     # Given the grid and the two centres and arm lengths of two pluses, it returns
@@ -72,22 +76,27 @@ def create_solution(grid, plus1, plus2, arm1, arm2, symbol1="#", symbol2="@"):
         new_grid[i] = "".join(row)
     return new_grid
 
+
 def extract_grid(input):
     # From input, extract grid, w and h
     input = input.split("\n")
     h, w = [int(x) for x in input[0].split()]
     grid = [row.strip() for row in input[1:]]
     return (w, h, grid)
-    
+
+
 def two_pluses(w, h, grid):
     # Solve the problem and print the solution
-    print "GRID:"
+    print("GRID:")
     print_grid(grid)
-    
-    PLUS_MATRIX = [(-1, 0), (0,  -1), (0,  1), (1,  0)]  # pattern for a plus: one up, down, left and right
-    max_arm = (min(w, h) - 1) // 2  # max possible plus arm size given the size of the grid
-    pluses = [[] for i in range(max_arm + 1)]  # where we will save all the existing pluses in the grid
-    
+
+    # pattern for a plus: one up, down, left and right
+    PLUS_MATRIX = [(-1, 0), (0, -1), (0, 1), (1, 0)]
+    # max possible plus arm size given the size of the grid
+    max_arm = (min(w, h) - 1) // 2
+    # where we will save all the existing pluses in the grid
+    pluses = [[] for i in range(max_arm + 1)]
+
     # save all existing pluses in grid (including the 1-square 'plus')
     spaces = 0
     for i in range(h):
@@ -100,8 +109,8 @@ def two_pluses(w, h, grid):
                 while isPlus:
                     len_arm += 1
                     for offs in PLUS_MATRIX:
-                        ii = i + len_arm*offs[0]
-                        jj = j + len_arm*offs[1]
+                        ii = i + len_arm * offs[0]
+                        jj = j + len_arm * offs[1]
                         if ii < 0 or jj < 0 or ii >= h or jj >= w or grid[ii][jj] != "G":
                             len_arm -= 1
                             isPlus = False
@@ -128,7 +137,8 @@ def two_pluses(w, h, grid):
                     max_plus = plus_value
                     solution = (pluses1[j], pluses1[k], current_arm1, current_arm1)
                     max_plus_found = True
-                    # print_grid(create_solution(grid, pluses1[j], pluses1[k], current_arm1, current_arm1))
+                    # print_grid(create_solution(grid, pluses1[j], pluses1[k],
+                    #                            current_arm1, current_arm1))
                     # raw_input()
                     break
             if max_plus_found:
@@ -147,7 +157,8 @@ def two_pluses(w, h, grid):
                             max_plus = plus_value
                             solution = (pluses1[j], pluses2[k], current_arm1, current_arm2)
                             max_plus_found = True
-                            # print_grid(create_solution(grid, pluses1[j], pluses2[k], current_arm1, current_arm2))
+                            # print_grid(create_solution(grid, pluses1[j], pluses2[k],
+                            #                            current_arm1, current_arm2))
                             # raw_input()
                             break
                     if max_plus_found:
@@ -155,13 +166,13 @@ def two_pluses(w, h, grid):
                 if max_plus_found:
                     break
 
-    print "SOLUTION:", max_plus
+    print("SOLUTION:", max_plus)
     print_grid(create_solution(grid, solution[0], solution[1], solution[2], solution[3]))
-    print
-    
+    print(" ")
+
+
 if __name__ == "__main__":
-    input = \
-    """12 12
+    input = """12 12
     GGGGGGGGGGGG
     GBGGBBBBBBBG
     GBGGBBBBBBBG
@@ -176,9 +187,8 @@ if __name__ == "__main__":
     GBGGBBBBBBBG"""
     (w, h, grid) = extract_grid(input)
     two_pluses(w, h, grid)
-    
-    input = \
-    """12 14
+
+    input = """12 14
     GGGGGGGGGGGGGG
     GGGGGGGGGGGGGG
     GGBGBGGGBGBGBG
@@ -194,8 +204,7 @@ if __name__ == "__main__":
     (w, h, grid) = extract_grid(input)
     two_pluses(w, h, grid)
 
-    input = \
-    """14 12
+    input = """14 12
     GGGGGGGGGGGG
     GGGGGGGGGGGG
     BGBGGGBGBGBG

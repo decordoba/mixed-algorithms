@@ -4,24 +4,26 @@
 https://www.hackerrank.com/contests/womens-codesprint-3/challenges/hackathon-shirts
 
 Input:
-    The first line contains an integer denoting q (the number of queries). The subsequent lines describe each query in the following format:
+    The first line contains an integer denoting q (the number of queries). The subsequent lines
+    describe each query in the following format:
     1. The first line contains an integer denoting n (the number of participants).
-    2. The second line contains n space-separated unique integers describing the respective values of [s0,s1,...,sn-1] (the size preferences
-       each participant).
+    2. The second line contains n space-separated unique integers describing the respective values
+       of [s0,s1,...,sn-1] (the size preferences each participant).
     3. The third line contains an integer denoting v (the number of vendors).
-    4. Each line j of the v subsequent lines contains two space-separated integers describing the respective values of smallest_j and
-       largest_j for the range of sizes sold by vendor j.
+    4. Each line j of the v subsequent lines contains two space-separated integers describing the
+       respective values of smallest_j and largest_j for the range of sizes sold by vendor j.
 
 Output:
-    Print q lines of output where each line k contains the number of appropriately-sized shirts Jessica procures in the kth query.
+    Print q lines of output where each line k contains the number of appropriately-sized shirts
+    Jessica procures in the kth query.
 
 Example:
-    Input:                  Output:                 Explanation:
-        2                       3                       2 querys
-        5                       1                       1st query has 5 users that want Tshirts with sizes (2,3,6,9,13) and 4 vendors
-        2 3 6 9 13                                      4 vendors sell Tshirts of size 3-7, 4-8, 14-16, 10-13
-        4                                               We can get only 3 of the 5 Tshirts: 3 (in 3-7), 6 (in 4-8), 13 (in 10-13), but not 2, 9
-        3 7                                             2nd query, we can only get size 3 (3-4) but not 2
+    Input:         Output:     Explanation:
+        2              3           2 querys
+        5              1           1st query has 5 users who want sizes (2,3,6,9,13) and 4 vendors
+        2 3 6 9 13                 4 vendors sell Tshirts of size 3-7, 4-8, 14-16, 10-13
+        4                          We get 3/5: 3 (in 3-7), 6 (in 4-8), 13 (in 10-13), but not 2, 9
+        3 7                        2nd query, we can only get size 3 (3-4) but not 2
         4 8
         14 16
         10 13
@@ -32,26 +34,24 @@ Example:
         4 5
 """
 
-import math
-import sys
 
 def original_solution():
     result = ""
     q = int(raw_input().strip())
-    for a0 in xrange(q):
+    for a0 in range(q):
         n = int(raw_input().strip())
         sizes = map(int, raw_input().strip().split(' '))
+        assert(len(sizes) == n)
         v = int(raw_input().strip())
         ht = {}
-        ht2 = {}
-        for a1 in xrange(v):
+        for a1 in range(v):
             smallest, largest = raw_input().strip().split(' ')
             smallest, largest = [int(smallest), int(largest)]
             if smallest in ht:
                 ht[smallest] = max(ht[smallest], largest)
             else:
                 ht[smallest] = largest
-                
+
         k = sorted(ht.keys())
         prevk = k[0]
         mink = ht[prevk]
@@ -93,11 +93,11 @@ def best_solution():
         users.sort()
         m = int(raw_input())
         ranges = []
-        for i in xrange(0, m):
-            b,e = map(int, raw_input().split())
+        for i in range(0, m):
+            b, e = map(int, raw_input().split())
             ranges.append((b, True))
             ranges.append((e, False))
-        
+
         ranges = sorted(ranges)
 
         sizes_found = 0
@@ -127,7 +127,7 @@ if __name__ == "__main__":
 5
 2 3 6 9 13
 4
-3 7 
+3 7
 4 8
 14 16
 10 13
@@ -139,18 +139,18 @@ if __name__ == "__main__":
     sample_output = """3
 1"""
 
-    print "------------------------------------"
-    print "Try the following Sample Input: \n{}".format(sample_input)
-    print "____________________________________"
-    print "Expected result: \n{}\n".format(sample_output)
-    print "------------------------------------"
-    print "Try it using original_solution():"
+    print("------------------------------------")
+    print("Try the following Sample Input: \n{}".format(sample_input))
+    print("____________________________________")
+    print("Expected result: \n{}\n".format(sample_output))
+    print("------------------------------------")
+    print("Try it using original_solution():")
     sol = original_solution()
-    print "____________________________________"
-    print "Result: \n{}".format(sol)
-    print "------------------------------------"
-    print "Try it using best_solution():"
+    print("____________________________________")
+    print("Result: \n{}".format(sol))
+    print("------------------------------------")
+    print("Try it using best_solution():")
     sol = best_solution()
-    print "____________________________________"
-    print "Result: \n{}".format(sol)
-    print "------------------------------------"
+    print("____________________________________")
+    print("Result: \n{}".format(sol))
+    print("------------------------------------")

@@ -60,8 +60,8 @@ Example output
 6.4721
 """
 
-import matplotlib.pyplot as plt
 from math import sqrt
+import matplotlib.pyplot as plt
 
 
 def plot_line(y_pts, x_pts, style="o", color="", fig_num=0, clf=False, show=True):
@@ -325,7 +325,8 @@ if __name__ == "__main__":
                 # The south path must follow the north path
                 if len(lines_down) == 1:
                     old_x0, old_y0, old_x, old_y1, old_m1, old_n1 = lines_down[0]
-                    for idx, (prev_x0, prev_y0, prev_x, prev_y2, prev_m2, prev_n2) in enumerate(lines_up):
+                    for idx, line_params in enumerate(lines_up):
+                        prev_x0, prev_y0, prev_x, prev_y2, prev_m2, prev_n2 = line_params
                         if prev_m2 <= old_m1:
                             path_length += get_distance(best_path[-1], (prev_x, prev_y2))
                             best_path.append((prev_x, prev_y2))
@@ -338,7 +339,8 @@ if __name__ == "__main__":
                 # The north path must follow the south path
                 elif len(lines_up) == 1:
                     old_x0, old_y0, old_x, old_y2, old_m2, old_n2 = lines_up[0]
-                    for idx, (prev_x0, prev_y0, prev_x, prev_y1, prev_m1, prev_n1) in enumerate(lines_down):
+                    for idx, line_params in enumerate(lines_down):
+                        prev_x0, prev_y0, prev_x, prev_y1, prev_m1, prev_n1 = line_params
                         if old_m2 <= prev_m1:
                             path_length += get_distance(best_path[-1], (prev_x, prev_y1))
                             best_path.append((prev_x, prev_y1))

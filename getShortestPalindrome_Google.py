@@ -24,10 +24,10 @@ def get_shortest_palindrome(s):
             return s
         else:
             return s[1] + s
-    
+
     c0 = s[0]
     cn = s[-1]
-    
+
     if c0 == cn:
         return c0 + get_shortest_palindrome(s[1:-1]) + cn
     else:
@@ -37,21 +37,21 @@ def get_shortest_palindrome(s):
             return cn + p1 + cn
         else:
             return c0 + p2 + c0
-    
+
 
 if __name__ == "__main__":
     inp = "abc"
     outp = get_shortest_palindrome(inp)
     print("IN:  {}\nOUT: {}".format(inp, outp))
-    
+
     inp = "hello"
     outp = get_shortest_palindrome(inp)
     print("IN:  {}\nOUT: {}".format(inp, outp))
-    
+
     inp = "decordoba"
     outp = get_shortest_palindrome(inp)
     print("IN:  {}\nOUT: {}".format(inp, outp))
-    
+
     inp = "batrbmnal"
     outp = get_shortest_palindrome(inp)
     print("IN:  {}\nOUT: {}".format(inp, outp))

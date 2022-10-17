@@ -15,9 +15,11 @@ from basic import *  # Find basic.py in https://github.com/decordoba/basic-pytho
 
 
 def lengthOfLongestSubstring1(s):
-    """ My first approach to the problem. It was a lot harder to design
+    """
+    My first approach to the problem. It was a lot harder to design
     compared to the other solution, as it must update a substring from where
-    new characters are added and substracted all the time """
+    new characters are added and substracted all the time
+    """
     ht = {}
     substr = ""
     max_substr = 0
@@ -35,7 +37,9 @@ def lengthOfLongestSubstring1(s):
 
 
 def lengthOfLongestSubstring2(s):
-    """ More optimized (and smarter) solution """
+    """
+    More optimized (and smarter) solution
+    """
     ht = {}
     max_substr = 0
     idx0 = 0
@@ -52,6 +56,5 @@ if __name__ == "__main__":
     default = "asdflkjendsfafinddjhrbans"
     inp = readInputArguments(input=default)
 
-
-    print "Solving with Algorithm 1: {}".format(lengthOfLongestSubstring1(inp))
-    print "Solving with Algorithm 2: {}".format(lengthOfLongestSubstring2(inp))
+    print("Solving with Algorithm 1: {}".format(lengthOfLongestSubstring1(inp)))
+    print("Solving with Algorithm 2: {}".format(lengthOfLongestSubstring2(inp)))

@@ -66,7 +66,7 @@ def getDistance(p0x, p0y, p1x, p1y):
     """
     Gets the distance between two points
     """
-    return math.sqrt((p0x - p1x)**2 + (p0y - p1y)**2)
+    return math.sqrt((p0x - p1x) ** 2 + (p0y - p1y) ** 2)
 
 
 def isTriangle(ax, ay, bx, by, cx, cy):

@@ -16,7 +16,8 @@ n:8, factors:99990001,99999999, palindrome:9999000000009999, result:475
 n:9, factors:999920317,999980347, palindrome:999900665566009999, result:1226  # Takes forever!!
 """
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+from  basic.basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 def generatePalindromes(num_digits, order="asc"):
@@ -26,7 +27,6 @@ def generatePalindromes(num_digits, order="asc"):
              generatePalindromes(4, order="desc") --> [9999, 9889, ..., 1001]
     We don't use it in the algorithm, but it may be useful for other problems
     """
-
     # Return empty list if num_digits is smaller than 1
     if num_digits < 1:
         return []

@@ -1,7 +1,5 @@
-import math
-
 """
-I've herd this was a 'hard' question in a Microsoft interview.
+I've heard this was a 'hard' question in a Microsoft interview.
 Rotate a matrix IN PLACE.
 """
 
@@ -28,15 +26,15 @@ def rotate_matrix(a, clockwise=True, verbose=False):
         print_matrix(a)
     last = w - 1
     for depth in range(w // 2):
-        for pos in range(depth, last-depth):
+        for pos in range(depth, last - depth):
             t0, t1 = (pos, depth)
-            b0, b1 = (last-pos, last-depth)
+            b0, b1 = (last - pos, last - depth)
             if clockwise:
-                r0, r1 = (last-depth, pos)
-                l0, l1 = (depth, last-pos)
+                r0, r1 = (last - depth, pos)
+                l0, l1 = (depth, last - pos)
             else:
-                r0, r1 = (depth, last-pos)
-                l0, l1 = (last-depth, pos)
+                r0, r1 = (depth, last - pos)
+                l0, l1 = (last - depth, pos)
             tmp = a[t0][t1]
             a[t0][t1] = a[r0][r1]
             a[r0][r1] = a[b0][b1]
@@ -49,23 +47,23 @@ def rotate_matrix(a, clockwise=True, verbose=False):
     return True
 
 
-if __name__ == "__main__":    
-    m = [[1,2],
-         [3,4]]
+if __name__ == "__main__":
+    m = [[1, 2],
+         [3, 4]]
 
-    m = [[1,2,3],
-         [4,5,6],
-         [7,8,9]]
+    m = [[1, 2, 3],
+         [4, 5, 6],
+         [7, 8, 9]]
 
-    m = [[ 1, 2, 3, 4],
-         [ 5, 6, 7, 8],
-         [ 9,10,11,12],
-         [13,14,15,16]]
+    m = [[ 1,  2,  3,  4],
+         [ 5,  6,  7,  8],
+         [ 9, 10, 11, 12],
+         [13, 14, 15, 16]]
 
-    m = [[ 1, 2, 3, 4, 5],
-         [ 6, 7, 8, 9,10],
-         [11,12,13,14,15],
-         [16,17,18,19,20],
-         [21,22,23,24,25]]
-         
+    m = [[ 1,  2,  3,  4,  5],
+         [ 6,  7,  8,  9, 10],
+         [11, 12, 13, 14, 15],
+         [16, 17, 18, 19, 20],
+         [21, 22, 23, 24, 25]]
+
     success = rotate_matrix(m, clockwise=False, verbose=True)

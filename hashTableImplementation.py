@@ -6,7 +6,7 @@ Hash table implementation without using a dictionary
 """
 
 
-class hashTable:
+class hashTable(object):
     def __init__(self, number_buckets=100):
         self.number_buckets = number_buckets
         self.ht = [[] for _ in range(self.number_buckets)]

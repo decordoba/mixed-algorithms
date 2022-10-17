@@ -10,6 +10,8 @@ GOOGLE
 GOOGLE, GOOG1E, GOO1LE, GOO2E, GO1GLE, GO1G1E, GO2LE, GO3E, G1OGLE, G1OG1E, G1O1LE, G1O2E, G2GLE,
 G2G1E, G3LE, G4E.
 
+Continue reading this comment to find the solution explained, or stop and try to solve it yourself.
+
 This is a Dynamic Programming example, here is what it does:
 GOOGLE: Let's use the algorithm with prefix G and word OOGLE
 
@@ -48,6 +50,7 @@ Input: "E", "L"  -> Len(1) => Return LE
 Input: "", "1E"  -> Len(0) => Return 1E
 ** Remember results for LE
 """
+
 
 import sys
 

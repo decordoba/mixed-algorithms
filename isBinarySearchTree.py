@@ -25,7 +25,7 @@ WRONG: (5 is grater than 2 but should be also smaller than 4)
 
 # Node class, every node will hold a value and a Left and Right child node
 # Leaf nodes will have both children None
-class Node:
+class Node(object):
     def __init__(self, val):
         self.val = val
         self.r = None
@@ -46,7 +46,8 @@ def check_node(node, min_val=None, max_val=None, verbose=False):
     if verbose:
         print(node)
         print("Min: {}, Max: {}".format(min_val, max_val))
-    if (max_val is not None and node.val >= max_val) or (min_val is not None and node.val <= min_val):
+    if ((max_val is not None and node.val >= max_val) or
+            (min_val is not None and node.val <= min_val)):
         if verbose:
             print("This Node is not between the values {}-{}".format(min_val, max_val))
         return False
@@ -73,7 +74,8 @@ def is_binary_search_tree_iterative(root_node, verbose=False):
         if verbose:
             print(node)
             print("Min: {}, Max: {}".format(min_val, max_val))
-        if (max_val is not None and node.val >= max_val) or (min_val is not None and node.val <= min_val):
+        if ((max_val is not None and node.val >= max_val) or
+                (min_val is not None and node.val <= min_val)):
             if verbose:
                 print("This Node is not between the values {}-{}".format(min_val, max_val))
             return False
@@ -134,17 +136,23 @@ if __name__ == "__main__":
     root.r = node3
 
     verbose = False
-    print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
-    print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
-    print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))
+    print("Recursive solution:       The tree is a BST? "
+          "{}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
+    print("Iterative solution:       The tree is a BST? "
+          "{}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
+    print("My 1st (wrong) approach:  The tree is a BST? "
+          "{}".format(is_binary_search_tree_wrong_approach(root)))
     print("")
 
     # Make tree not BST
     root.l.r.r.val = 9
 
-    print("Recursive solution:       The tree is a BST? {}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
-    print("Iterative solution:       The tree is a BST? {}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
-    print("My 1st (wrong) approach:  The tree is a BST? {}".format(is_binary_search_tree_wrong_approach(root)))
+    print("Recursive solution:       The tree is a BST? "
+          "{}".format(is_binary_search_tree_recursive(root, verbose=verbose)))
+    print("Iterative solution:       The tree is a BST? "
+          "{}".format(is_binary_search_tree_iterative(root, verbose=verbose)))
+    print("My 1st (wrong) approach:  The tree is a BST? "
+          "{}".format(is_binary_search_tree_wrong_approach(root)))
 
 # Solutions without verbose (easier to read)
 """
@@ -174,7 +182,8 @@ def is_binary_search_tree_iterative(root_node):
     queue = [(root_node, None, None)]
     while len(queue) > 0:
         node, max_val, min_val = queue.pop(0)  # removes first element queue
-        if (max_val is not None and node.val >= max_val) or (min_val is not None and node.val <= min_val):
+        if ((max_val is not None and node.val >= max_val) or
+                (min_val is not None and node.val <= min_val)):
             return False
         if node.l is not None:  # left has to be smaller than val
             new_max_val = node.val if max_val is None else min(node.val, max_val)

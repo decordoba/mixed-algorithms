@@ -27,7 +27,8 @@ is: "/dir1/dir12/who said folders couldn't include spaces/dir1211/xxx.png", so w
 len("/dir1/dir12/who said folders couldn't include spaces/dir1211") = 60.
 """
 
-from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
+
+from basic.basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
 def findLongestImagePath(listing):

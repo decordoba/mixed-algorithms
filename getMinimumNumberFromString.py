@@ -27,10 +27,10 @@ def getMinimumNumberFromString(numbers_string, remove):
     # as long as we can remove more characters
     i = 0
     while remove > 0 and i < len(numbers_string) - 1:
-        if numbers_string[i] > numbers_string[i+1]:
-            numbers_string = numbers_string[:i] + numbers_string[i+1:]
+        if numbers_string[i] > numbers_string[i + 1]:
+            numbers_string = numbers_string[:i] + numbers_string[i + 1:]
             remove -= 1
-            if i > 0 and numbers_string[i-1] > numbers_string[i]:
+            if i > 0 and numbers_string[i - 1] > numbers_string[i]:
                 i -= 1
         else:
             i += 1

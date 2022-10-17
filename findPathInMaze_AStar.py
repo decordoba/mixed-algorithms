@@ -6,7 +6,7 @@ implementation. In this example, the algorithm finds the shortest path between t
 maze.
 """
 
-from heapq import *
+from heapq import heappush
 from basic import *  # Find basic.py in https://github.com/decordoba/basic-python
 
 
@@ -82,7 +82,7 @@ def getNeighbors(state, world):
     return neighbors
 
 
-class World:
+class World(object):
     """
     Class to save variables and handle the maze
     """
